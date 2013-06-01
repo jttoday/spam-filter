@@ -1,5 +1,4 @@
 from features import extract_features
-from features import word_feature
 
 from data_base import total_hams 
 from data_base import total_spams 

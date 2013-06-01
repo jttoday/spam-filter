@@ -1,7 +1,6 @@
 from math import log
 from math import exp
 
-from features import word_feature
 from features import extract_features
 from data_base import total_spams
 from data_base import total_hams
