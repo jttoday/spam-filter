@@ -21,4 +21,23 @@ def increase_total_count(category):
 	elif category == "spam":
 		total_spams.increase()
 
+# need some clean up
+# train from corpus
+from os import listdir
+from os.path import join
+
+# add all files to the corpus database
+def add_files(dirname, corpus):
+	files = map(lambda(x):join(dirname, x), listdir(dirname))
+	corpus.extend(files)
+
+
+def read(filename):
+	infile = open(filename, 'r')
+	return infile.read()
+
+def train_from_corpus(corpus, category):
+	for mail in corpus:
+		train(read(mail), category)
+
 
