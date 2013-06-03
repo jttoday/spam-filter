@@ -1,3 +1,5 @@
+import shelve		# using shelve as persistence manager
+import os			# to delete existing files for clear()
 
 class Feature():
 	def __init__(self, word):
@@ -35,8 +37,9 @@ class Counter():
 		self.n = 0
 
 class Feature_data():
-	def __init__(self):
-		self.data = {}
+	def __init__(self,filename):
+		self.filename = filename
+		self.data = shelve.open(self.filename, writeback=True)
 
 	def get(self, word):
 		try:
@@ -46,10 +49,15 @@ class Feature_data():
 			return self.data[word]
 
 	def clear(self):
-		self.data = {}
+		self.data.close()
+		os.remove(self.filename)
+		self.data = shelve.open(self.filename, writeback=True)
+
+	def __del__(self):
+		self.data.close()
 
 
-feature_data = Feature_data()	#storing word feature class
+feature_data = Feature_data("feature.db")	#storing word feature class
 total_hams  = Counter() 
 total_spams = Counter()
 
@@ -58,4 +66,8 @@ def clear_database():
 	total_hams.clear()
 	total_spams.clear()
 
+
+if __name__=="__main__":
+	feature_data.get("word").increase_ham()
+	print feature_data.get("word")
 
