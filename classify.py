@@ -4,7 +4,6 @@ from math import exp
 from features import extract_features
 from data_base import total_spams
 from data_base import total_hams
-from data_base import clear_database
 
 MIN_SPAM_SCORE = 0.6
 MAX_HAM_SCORE = 0.4
@@ -86,9 +85,6 @@ def inverse_chi_square(value, freedom):
 
 if __name__=="__main__":
 	from train import train
-	clear_database()
-	train("Make money fast", "spam")
-	train("Do you have money for the movies?", "ham")
 	print classify("Make money fast")
 	print classify("Want to go to the movies?")
 
