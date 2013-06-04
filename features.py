@@ -1,6 +1,6 @@
 
 
-from data_base import feature_data
+from database import feature_data
 
 def extract_words(text):
 	return remove_duplicates(text.lower().split())

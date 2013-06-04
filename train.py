@@ -1,8 +1,8 @@
 from features import extract_features
 
-from data_base import total_hams 
-from data_base import total_spams 
-from data_base import clear_database
+from database import total_hams 
+from database import total_spams 
+from database import clear_database
 
 
 def train(text, category):
@@ -28,7 +28,6 @@ from os.path import join
 
 # add all files to the corpus database
 def add_files(dirname, corpus):
-	print dirname
 	files = map(lambda(x):join(dirname, x), listdir(dirname))
 	corpus.extend(files)
 

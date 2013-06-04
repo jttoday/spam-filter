@@ -1,5 +1,3 @@
-from train import train_from_corpus
-from train import add_files
 from classify import classify
 
 simple_spam = """
